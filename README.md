@@ -39,6 +39,21 @@ hypernum --init
 Or run without installing globally:
 
 ```bash
+npm install @obinexusmk2/hypernum
+```
+
+## CLI Usage
+
+Hypernum ships with a CLI for configuration bootstrapping.
+
+```bash
+npm i -g @obinexusmk2/hypernum
+hypernum --init
+```
+
+Or run without installing globally:
+
+```bash
 npx @obinexusmk2/hypernum --init
 ```
 
@@ -46,20 +61,6 @@ This creates `hypernum.config.json` in your current directory. You can print the
 
 ```bash
 hypernum --config
-```
-
-The CLI resolves configuration from standard locations (`hypernum.config.json`, `.hypernumrc`, `.hypernumrc.json`, `.hypernumrc.js`) and environment-supported rc values.
-
-Example configuration file (`hypernum.config.json`):
-
-```json
-{
-  "precision": 20,
-  "roundingMode": "HALF_EVEN",
-  "checkOverflow": true,
-  "maxSteps": 5000,
-  "debug": false
-}
 ```
 
 ## Basic Usage

@@ -3,7 +3,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { pathToFileURL } from 'node:url';
 
 const DEFAULT_CONFIG = {
   precision: 10,
@@ -15,10 +14,8 @@ const DEFAULT_CONFIG = {
 
 const DEFAULT_CONFIG_NAMES = [
   'hypernum.config.json',
-  'hypernum.config.js',
   '.hypernumrc',
-  '.hypernumrc.json',
-  '.hypernumrc.js'
+  '.hypernumrc.json'
 ];
 
 const USAGE = `hypernum CLI
@@ -35,17 +32,6 @@ Install globally:
 Run via npx:
   npx @obinexusmk2/hypernum --init
 `;
-
-
-async function loadRcConfig() {
-  try {
-    const rcModule = await import('rc');
-    const rc = rcModule.default ?? rcModule;
-    return rc('hypernum', DEFAULT_CONFIG);
-  } catch {
-    return null;
-  }
-}
 
 function writeConfig(filePath) {
   const targetPath = path.resolve(process.cwd(), filePath || 'hypernum.config.json');
@@ -70,13 +56,8 @@ function findConfigPath() {
   return null;
 }
 
-async function readConfig(filePath) {
+function readConfig(filePath) {
   try {
-    if (filePath.endsWith('.js')) {
-      const module = await import(pathToFileURL(filePath).href);
-      return module.default ?? module;
-    }
-
     const raw = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(raw);
   } catch (error) {
@@ -87,30 +68,17 @@ async function readConfig(filePath) {
   }
 }
 
+function printConfig(explicitPath) {
+  const resolvedPath = explicitPath
+    ? path.resolve(process.cwd(), explicitPath)
+    : findConfigPath();
 
-async function printConfig(explicitPath) {
-  if (explicitPath) {
-    const parsed = await readConfig(path.resolve(process.cwd(), explicitPath));
-    if (!parsed) {
-      return;
-    }
-    console.log(JSON.stringify({ ...DEFAULT_CONFIG, ...parsed }, null, 2));
-    return;
-  }
-
-  const rcConfig = await loadRcConfig();
-  if (rcConfig) {
-    console.log(JSON.stringify(rcConfig, null, 2));
-    return;
-  }
-
-  const resolvedPath = findConfigPath();
   if (!resolvedPath) {
     console.log(JSON.stringify(DEFAULT_CONFIG, null, 2));
     return;
   }
 
-  const parsed = await readConfig(resolvedPath);
+  const parsed = readConfig(resolvedPath);
   if (!parsed) {
     return;
   }
@@ -118,7 +86,7 @@ async function printConfig(explicitPath) {
   console.log(JSON.stringify({ ...DEFAULT_CONFIG, ...parsed }, null, 2));
 }
 
-async function main() {
+function main() {
   const args = process.argv.slice(2);
 
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
@@ -132,7 +100,7 @@ async function main() {
   }
 
   if (args[0] === '--config') {
-    await printConfig(args[1]);
+    printConfig(args[1]);
     return;
   }
 
