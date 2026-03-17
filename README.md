@@ -1,6 +1,6 @@
-# @obinexuscomputing/hypernum - Computing from the Heart
+# @obinexusmk2/hypernum - Computing from the Heart
 
-![Logo ](./favicon.svg)
+![Logo](./docs/favicon.png)
 
 A comprehensive TypeScript/JavaScript library for handling large number operations with BigInt support.
 
@@ -15,14 +15,55 @@ A comprehensive TypeScript/JavaScript library for handling large number operatio
 
 ## Installation
 
+Library dependency:
+
 ```bash
-npm install @obinexuscomputing/hypernum
+npm i @obinexusmk2/hypernum
+```
+
+CLI (global):
+
+```bash
+npm i -g @obinexusmk2/hypernum
+```
+
+## CLI Usage
+
+Hypernum ships with a CLI for configuration bootstrapping.
+
+```bash
+npm i -g @obinexusmk2/hypernum
+hypernum --init
+```
+
+Or run without installing globally:
+
+```bash
+npx @obinexusmk2/hypernum --init
+```
+
+This creates `hypernum.config.json` in your current directory. You can print the resolved config with:
+
+```bash
+hypernum --config
+```
+
+Example configuration file (`hypernum.config.json`):
+
+```json
+{
+  "precision": 20,
+  "roundingMode": "HALF_EVEN",
+  "checkOverflow": true,
+  "maxSteps": 5000,
+  "debug": false
+}
 ```
 
 ## Basic Usage
 
 ```typescript
-import { createHypernum } from '@obinexuscomputing/hypernum';
+import { createHypernum } from '@obinexusmk2/hypernum';
 
 // Create a Hypernum instance with default configuration
 const hypernum = createHypernum();
@@ -106,7 +147,7 @@ const root = hypernum.nthRoot(value, n);
 A specialized array implementation for handling large numbers efficiently:
 
 ```typescript
-import { BigArray } from '@obinexuscomputing/hypernum';
+import { BigArray } from '@obinexusmk2/hypernum';
 
 const array = new BigArray<bigint>();
 array.push(12345678901234567890n);
@@ -121,7 +162,7 @@ const max = array.queryRange(0, 1);
 An AVL tree implementation optimized for large number operations:
 
 ```typescript
-import { NumberTree } from '@obinexuscomputing/hypernum';
+import { NumberTree } from '@obinexusmk2/hypernum';
 
 const tree = new NumberTree();
 tree.insert(12345678901234567890n);
@@ -137,7 +178,7 @@ const values = tree.traverse('inOrder');
 Handles power tower (tetration) computations:
 
 ```typescript
-import { PowerTower } from '@obinexuscomputing/hypernum';
+import { PowerTower } from '@obinexusmk2/hypernum';
 
 const tower = new PowerTower();
 tower.build(2n, 4); // Computes 2↑↑4
@@ -149,7 +190,7 @@ const result = tower.evaluate();
 Computes and manages Ackermann function values:
 
 ```typescript
-import { AckermannStructure } from '@obinexuscomputing/hypernum';
+import { AckermannStructure } from '@obinexusmk2/hypernum';
 
 const ackermann = new AckermannStructure();
 const result = ackermann.computeAckermann(3, 2);
@@ -165,11 +206,11 @@ const gcd = hypernum.gcd(48n, 18n);
 const lcm = hypernum.lcm(48n, 18n);
 
 // Factorial
-import { factorial } from '@obinexuscomputing/hypernum';
+import { factorial } from '@obinexusmk2/hypernum';
 const fact = factorial(10n);
 
 // Binomial coefficient
-import { binomial } from '@obinexuscomputing/hypernum';
+import { binomial } from '@obinexusmk2/hypernum';
 const combination = binomial(10n, 5n);
 ```
 
@@ -181,7 +222,7 @@ import {
   toHexadecimal,
   toRoman,
   fromRoman
-} from '@obinexuscomputing/hypernum';
+} from '@obinexusmk2/hypernum';
 
 // Convert to different bases
 const binary = toBinary(123456789n);
@@ -201,7 +242,7 @@ import {
   HypernumError,
   OverflowError,
   ValidationError
-} from '@obinexuscomputing/hypernum';
+} from '@obinexusmk2/hypernum';
 
 try {
   const result = hypernum.power(2n, 1000n);
@@ -231,7 +272,7 @@ import type {
   HypernumConfig,
   NumericInput,
   OperationOptions
-} from '@obinexuscomputing/hypernum';
+} from '@obinexusmk2/hypernum';
 
 // Type-safe configuration
 const config: HypernumConfig = {
@@ -253,4 +294,4 @@ const input: NumericInput = "12345678901234567890";
 
 ISC License
 
-For more information, visit the [GitHub repository](https://github.com/obinexuscomputing/hypernum).
+For more information, visit the [GitHub repository](https://github.com/obinexusmk2/hypernum).
