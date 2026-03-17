@@ -15,6 +15,29 @@ A comprehensive TypeScript/JavaScript library for handling large number operatio
 
 ## Installation
 
+Library dependency:
+
+```bash
+npm i @obinexusmk2/hypernum
+```
+
+CLI (global):
+
+```bash
+npm i -g @obinexusmk2/hypernum
+```
+
+## CLI Usage
+
+Hypernum ships with a CLI for configuration bootstrapping.
+
+```bash
+npm i -g @obinexusmk2/hypernum
+hypernum --init
+```
+
+Or run without installing globally:
+
 ```bash
 npm install @obinexusmk2/hypernum
 ```
