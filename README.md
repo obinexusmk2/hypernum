@@ -15,53 +15,108 @@ A comprehensive TypeScript/JavaScript library for handling large number operatio
 
 ## Installation
 
-Library dependency:
-
 ```bash
+# Library dependency
 npm i @obinexusmk2/hypernum
-```
 
-CLI (global):
+# CLI — run without installing
+npx @obinexusmk2/hypernum --help
 
-```bash
+# CLI — install globally
 npm i -g @obinexusmk2/hypernum
+hypernum --help
 ```
 
 ## CLI Usage
 
-Hypernum ships with a CLI for configuration bootstrapping.
+Run math operations directly from the terminal without writing code:
 
 ```bash
-npm i -g @obinexusmk2/hypernum
-hypernum --init
+npx @obinexusmk2/hypernum <command> [args...] [options]
 ```
 
-Or run without installing globally:
+### Arithmetic
+
+| Command | Args | Description |
+|---------|------|-------------|
+| `add` | `<a> <b>` | Add two numbers |
+| `subtract` | `<a> <b>` | Subtract b from a |
+| `multiply` | `<a> <b>` | Multiply two numbers |
+| `divide` | `<a> <b>` | Divide a by b |
+| `mod` | `<a> <b>` | Remainder of a / b |
+| `gcd` | `<a> <b>` | Greatest common divisor |
+| `lcm` | `<a> <b>` | Least common multiple |
+| `abs` | `<n>` | Absolute value |
+| `sign` | `<n>` | Sign (-1, 0, or 1) |
+
+### Power
+
+| Command | Args | Description |
+|---------|------|-------------|
+| `power` | `<base> <exp>` | Exponentiation |
+| `sqrt` | `<n>` | Integer square root |
+| `nthRoot` | `<n> <k>` | k-th root of n |
+
+### Factorial
+
+| Command | Args | Description |
+|---------|------|-------------|
+| `factorial` | `<n>` | Factorial (n!) |
+| `binomial` | `<n> <k>` | Binomial coefficient C(n,k) |
+| `primorial` | `<n>` | Primorial (n#) |
+
+### Conversion
+
+| Command | Args | Description |
+|---------|------|-------------|
+| `toBinary` | `<n>` | Convert to binary |
+| `toOctal` | `<n>` | Convert to octal |
+| `toHex` | `<n>` | Convert to hexadecimal |
+| `toRoman` | `<n>` | Convert to Roman numeral |
+| `fromRoman` | `<str>` | Convert from Roman numeral |
+| `toScientific` | `<n>` | Convert to scientific notation |
+| `toBase` | `<n> <base>` | Convert to arbitrary base |
+
+### Comparison
+
+| Command | Args | Description |
+|---------|------|-------------|
+| `compare` | `<a> <b>` | Compare (-1, 0, 1) |
+| `equals` | `<a> <b>` | Test equality (true/false) |
+| `lessThan` | `<a> <b>` | Test a < b (true/false) |
+| `greaterThan` | `<a> <b>` | Test a > b (true/false) |
+
+### Config
 
 ```bash
-npm install @obinexusmk2/hypernum
+npx @obinexusmk2/hypernum --init          # Create hypernum.config.json
+npx @obinexusmk2/hypernum --config        # Show resolved config
 ```
 
-## CLI Usage
+### Options
 
-Hypernum ships with a CLI for configuration bootstrapping.
+| Flag | Description |
+|------|-------------|
+| `--precision <n>` | Set decimal precision |
+| `--no-overflow` | Disable overflow checking |
+| `--version`, `-v` | Show version |
+| `--help`, `-h` | Show help |
+
+### Examples
 
 ```bash
-npm i -g @obinexusmk2/hypernum
-hypernum --init
+npx @obinexusmk2/hypernum add 123456789012345678901234567890 987654321098765432109876543210
+npx @obinexusmk2/hypernum factorial 100
+npx @obinexusmk2/hypernum toRoman 2024
+npx @obinexusmk2/hypernum toBase 255 16
+npx @obinexusmk2/hypernum sqrt 144
 ```
 
-Or run without installing globally:
+### Windows Note
 
-```bash
-npx @obinexusmk2/hypernum --init
-```
+`npm link` requires **Developer Mode** on Windows (Settings → Privacy & Security → For Developers → Developer Mode: On).
 
-This creates `hypernum.config.json` in your current directory. You can print the resolved config with:
-
-```bash
-hypernum --config
-```
+Without Developer Mode, use `npm install -g @obinexusmk2/hypernum` instead.
 
 ## Basic Usage
 

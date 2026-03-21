@@ -5,12 +5,9 @@ import { HypernumConfig, mergeConfig, validateConfig } from './core';
 import { Hypernum } from './core/hypernum';
 import { RoundingMode } from './utils/precision';
 
-// Version
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
-const packagePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../package.json');
-const { version: VERSION } = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
+// Version — inlined at build time via @rollup/plugin-json
+import pkg from '../package.json';
+const VERSION = pkg.version;
 
 // Core exports
 export { Hypernum } from './core/hypernum';

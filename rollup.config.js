@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import dts from 'rollup-plugin-dts';
 import alias from '@rollup/plugin-alias';
+import json from '@rollup/plugin-json';
 import path from 'path';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -59,6 +60,7 @@ const typeScriptConfig = {
 // Base plugins configuration
 const basePlugins = [
   alias({ entries: srcAliases }),
+  json({ compact: true }),
   resolve({
     browser: true,
     preferBuiltins: true,
